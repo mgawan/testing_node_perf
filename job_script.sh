@@ -11,6 +11,7 @@
 #SBATCH -q regular
 
 module load PrgEnv-nvidia
+cd /pscratch/sd/m/mgawan/stream/BabelStream/build
 
 JOBID=${SLURM_JOB_ID}
 if [[ -z "$JOBID" ]]; then
@@ -20,4 +21,5 @@ fi
 
 mkdir -p ${JOBID}
 
-srun --ntasks-per-node=4 --gpus-per-task=1 bash -c 'node_name=$(hostname | tr -c "[:alnum:]" "_"); ./cuda-stream &> '${JOBID}'/${node_name}.out'
+# srun --ntasks-per-node=4 --gpus-per-task=1 bash -c 'node_name=$(hostname | tr -c "[:alnum:]" "_"); ./cuda-stream &> '${JOBID}'/${node_name}.out'
+srun --ntasks-per-node=4 --gpus-per-task=1 bash -c 'node_name=$(hostname | tr -c "[:alnum:]" "_"); ./cuda-stream >> '${JOBID}'/${node_name}.out 2>&1'
