@@ -2,10 +2,10 @@ import os
 import re
 import sys
 
-# Define the threshold for Best performance
-threshold = 19000 * 0.93  # 7% less than 1363787
+# Define the threshold for performance
+threshold = 19000 * 0.93  # 7% less than 19000
 
-# Function to extract all Best performance values from a file
+# Function to extract all performance values from a file
 def extract_triad_performance(file_path):
     triad_values = []
     with open(file_path, "r") as file:
@@ -38,10 +38,10 @@ for file_name in os.listdir(output_dir):
             if any(value < threshold for value in triad_performance_values):
                 low_performance_nodes.append((node_id, triad_performance_values))
 
-# Report nodes with low Best performance
+# Report nodes with low performance
 if low_performance_nodes:
-    print("Nodes with at least one Best performance value below 93% of 1363787:")
+    print("Nodes with at least one performance value below 93% of 19000:")
     for node_id, performances in low_performance_nodes:
         print(f"Node: {node_id}, Best Performances: {', '.join(f'{v:.2f}' for v in performances)} Gflop/s")
 else:
-    print("All nodes meet the Best performance threshold.")
+    print("All nodes meet the performance threshold.")
