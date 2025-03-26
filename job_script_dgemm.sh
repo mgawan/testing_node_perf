@@ -14,7 +14,6 @@
 HOME="$(pwd)"
 
 module load python
-module load PrgEnv-nvidia
 
 JOBID=${SLURM_JOB_ID}
 if [[ -z "$JOBID" ]]; then
